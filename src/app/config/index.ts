@@ -9,6 +9,8 @@ export default {
     DB_HOST: "localhost",
     DB_NAME: "postgres-express-task-management",
     DB_PASSWORD: "ksrcsr109@postgres",
-    DB_PORT: 5432
+    DB_PORT: 5432,
     // bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
+
+    jwt_access_secret: 'jkdkfjkdfj'
 };

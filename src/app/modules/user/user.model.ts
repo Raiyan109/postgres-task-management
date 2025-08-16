@@ -24,3 +24,12 @@ export const getAllUsers = async (): Promise<IUser[]> => {
     const result = await pool.query('SELECT * FROM users ORDER BY created_at DESC');
     return result.rows;
 };
+
+export const findUserByPhone = async (phone: string): Promise<IUser | null> => {
+    const result = await pool.query(
+        `SELECT * FROM users WHERE phone = $1 LIMIT 1`,
+        [phone]
+    );
+    return result.rows[0] || null;
+};
+

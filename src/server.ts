@@ -5,7 +5,7 @@ import pool from './app/database/db';
 
 dotenv.config();
 
-const PORT = config.DB_PORT || 3000;
+const PORT = config.PORT || 5001;
 
 async function main() {
     try {

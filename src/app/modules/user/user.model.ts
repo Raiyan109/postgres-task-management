@@ -1,31 +1,26 @@
-import { Schema, model } from "mongoose";
-import { TUser } from "./user.interface";
+import pool from "../../database/db";
+import { IUser } from "./user.interface";
 
-const userSchema = new Schema<TUser>({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
-    role: {
-        type: String,
-        enum: ['admin', 'user'],
-    },
-    address: {
-        type: String,
-        required: true
-    },
-}, { timestamps: true })
 
-export const UserModel = model<TUser>('User', userSchema)
+
+export const createUser = async (user: IUser): Promise<IUser> => {
+    console.log(user, 'user from model');
+    // const result = await pool.query(
+    //     `INSERT INTO users (name, phone, role, address, password) 
+    //  VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+    //     [user.name, user.phone, user.password, user.role, user.role || 'pending']
+    // );
+    // console.log(result, 'result from model');
+    // return result.rows[0];
+    const result = await pool.query(
+        `INSERT INTO users (name, email, phone, role, address, password) 
+     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+        [user.name, user.email, user.phone, user.role, user.address, user.password]
+    );
+    return result.rows[0];
+};
+
+export const getAllUsers = async (): Promise<IUser[]> => {
+    const result = await pool.query('SELECT * FROM users ORDER BY created_at DESC');
+    return result.rows;
+};

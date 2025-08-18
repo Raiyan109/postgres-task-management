@@ -11,6 +11,14 @@ export const createTask = async (task: ITask): Promise<ITask> => {
 }
 
 export const getAllTasks = async (): Promise<ITask[]> => {
-    const result = await pool.query('SELECT * FROM tasks ORDER BY created_at DESC')
+    const result = await pool.query('SELECT * FROM tasks ORDER BY startTime DESC')
     return result.rows
 }
+
+export const findTaskById = async (id: string): Promise<ITask | null> => {
+    const result = await pool.query(
+        `SELECT * FROM tasks WHERE id = $1 LIMIT 1`,
+        [id]
+    );
+    return result.rows[0] || null;
+};

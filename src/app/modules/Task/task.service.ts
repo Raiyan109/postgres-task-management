@@ -8,3 +8,12 @@ export const addTask = async (task: ITask) => {
 export const listTask = async () => {
     return await TaskModel.getAllTasks()
 }
+
+export const listSingleTask = async (id: string) => {
+    const task = await TaskModel.findTaskById(id);
+    if (!task) {
+        throw new Error("Task not found");
+    }
+
+    return task
+}

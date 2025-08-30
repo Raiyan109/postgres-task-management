@@ -11,6 +11,6 @@ export default {
     DB_PASSWORD: "ksrcsr109@postgres",
     DB_PORT: 5432,
     // bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
-
+    DB_URL: 'postgresql://neondb_owner:npg_uSLr6PYpiR9o@ep-aged-silence-ad0ld6e8-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require', // Neon connection string
     jwt_access_secret: 'jkdkfjkdfj'
 };
